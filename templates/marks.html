@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+
+<html lang="en" class="no-js">
+
+    <head>
+        <meta charset="utf-8"/>
+        <link rel="icon" type="image/x-icon" href= "{{url_for('static',filename='img/icon.ico')}}">
+        <title>IA MANAGEMENT SYSTEM</title>
+    </head>
+<style>
+    @import 'https://fonts.googleapis.com/css?family=Open+Sans:600,700';
+
+* {font-family: 'Open Sans', sans-serif;}
+
+.rwd-table {
+  margin: auto;
+  min-width: 300px;
+  max-width: 100%;
+  border-collapse: collapse;
+}
+
+.rwd-table tr:first-child {
+  border-top: none;
+  background: #428bca;
+  color: #fff;
+}
+
+.rwd-table tr {
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  background-color: #f5f9fc;
+}
+
+.rwd-table tr:nth-child(odd):not(:first-child) {
+  background-color: #ebf3f9;
+}
+
+.rwd-table th {
+  display: none;
+}
+
+.rwd-table td {
+  display: block;
+}
+
+.rwd-table td:first-child {
+  margin-top: .5em;
+}
+
+.rwd-table td:last-child {
+  margin-bottom: .5em;
+}
+
+.rwd-table td:before {
+  content: attr(data-th) ": ";
+  font-weight: bold;
+  width: 120px;
+  display: inline-block;
+  color: #000;
+}
+
+.rwd-table th,
+.rwd-table td {
+  text-align: left;
+}
+
+.rwd-table {
+  color: #333;
+  border-radius: .4em;
+  overflow: hidden;
+}
+
+.rwd-table tr {
+  border-color: #bfbfbf;
+}
+
+.rwd-table th,
+.rwd-table td {
+  padding: .5em 1em;
+}
+@media screen and (max-width: 601px) {
+  .rwd-table tr:nth-child(2) {
+    border-top: none;
+  }
+}
+@media screen and (min-width: 600px) {
+  .rwd-table tr:hover:not(:first-child) {
+    background-color: #d8e7f3;
+  }
+  .rwd-table td:before {
+    display: none;
+  }
+  .rwd-table th,
+  .rwd-table td {
+    display: table-cell;
+    padding: .25em .5em;
+  }
+  .rwd-table th:first-child,
+  .rwd-table td:first-child {
+    padding-left: 0;
+  }
+  .rwd-table th:last-child,
+  .rwd-table td:last-child {
+    padding-right: 0;
+  }
+  .rwd-table th,
+  .rwd-table td {
+    padding: 1em !important;
+  }
+}
+
+
+/* THE END OF THE IMPORTANT STUFF */
+
+/* Basic Styling */
+body
+    {
+    width: 100%;
+    height: 100%;
+    background-image:url(https://clgonline.in//static/all_collages/img/gm-institute-of-technology-gmit-davanagere.jpg);
+    background-size: cover;
+
+    background-attachment:fixed;
+    margin: 0;
+    padding: 0;
+
+    }
+
+h1 {
+   background-color:#04AA6D;
+  text-align: center;
+  font-size: 2.4em;
+  color: black;
+}
+.container {
+  display: block;
+  text-align: center;
+}
+h3 {
+  display: inline-block;
+  position: relative;
+  text-align: center;
+  font-size: 1.5em;
+  color: #cecece;
+}
+h3:before {
+  content: "\25C0";
+  position: absolute;
+  left: -50px;
+  -webkit-animation: leftRight 2s linear infinite;
+  animation: leftRight 2s linear infinite;
+}
+h3:after {
+  content: "\25b6";
+  position: absolute;
+  right: -50px;
+  -webkit-animation: leftRight 2s linear infinite reverse;
+  animation: leftRight 2s linear infinite reverse;
+}
+@-webkit-keyframes leftRight {
+  0%    { -webkit-transform: translateX(0)}
+  25%   { -webkit-transform: translateX(-10px)}
+  75%   { -webkit-transform: translateX(10px)}
+  100%  { -webkit-transform: translateX(0)}
+}
+@keyframes leftRight {
+  0%    { transform: translateX(0)}
+  25%   { transform: translateX(-10px)}
+  75%   { transform: translateX(10px)}
+  100%  { transform: translateX(0)}
+}
+
+/*
+    Don't look at this last part. It's unnecessary. I was just playing with pixel gradients... Don't judge.
+*/
+/*
+@media screen and (max-width: 601px) {
+  .rwd-table tr {
+    background-image: -webkit-linear-gradient(left, #428bca 137px, #f5f9fc 1px, #f5f9fc 100%);
+    background-image: -moz-linear-gradient(left, #428bca 137px, #f5f9fc 1px, #f5f9fc 100%);
+    background-image: -o-linear-gradient(left, #428bca 137px, #f5f9fc 1px, #f5f9fc 100%);
+    background-image: -ms-linear-gradient(left, #428bca 137px, #f5f9fc 1px, #f5f9fc 100%);
+    background-image: linear-gradient(left, #428bca 137px, #f5f9fc 1px, #f5f9fc 100%);
+  }
+  .rwd-table tr:nth-child(odd) {
+    background-image: -webkit-linear-gradient(left, #428bca 137px, #ebf3f9 1px, #ebf3f9 100%);
+    background-image: -moz-linear-gradient(left, #428bca 137px, #ebf3f9 1px, #ebf3f9 100%);
+    background-image: -o-linear-gradient(left, #428bca 137px, #ebf3f9 1px, #ebf3f9 100%);
+    background-image: -ms-linear-gradient(left, #428bca 137px, #ebf3f9 1px, #ebf3f9 100%);
+    background-image: linear-gradient(left, #428bca 137px, #ebf3f9 1px, #ebf3f9 100%);
+  }
+}
+</style>
+    <style>
+input[type=button], input[type=submit], input[type=reset] {
+  background-color: #04AA6D;
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+</style>
+<body>
+
+<div style="float:right;color:blue;">
+ <h2><input type="button" value="Go back!" onclick="history.back()"></h2>
+
+</div>
+{%if uname%}<h2 style="color:black; text-align:center;">STUDENT NAME : {{uname}}</h2>{%endif%}
+{%if sem%}<h2 style="color:black;text-align:center;">SEMESTER : {{sem}}</h2>{%endif%}
+{%if usn%}<h2 style="color:black; text-align:center;">STUDENT USN : {{usn}}</h2>{%endif%}
+{%if sch%}<h2 style="color:black; text-align:center;">STUDENT SCHEME : {{sch}}</h2>{%endif%}
+{%if ssm%}<h2 style="color:black;text-align:center;">SEMESTER : {{ssm}}</h2>{%endif%}
+  {%if name%}
+<div class="container">
+<h1>IA MARKS</h1>
+  <table class="rwd-table">
+    <tbody>
+      <tr>
+        <th>SUBJECT CODE</th>
+        <th>SUBJECT NAME</th>
+        <th>IA 1</th>
+        <th>IA 2</th>
+        <th>IA 3</th>
+        <th>AVERAGE IA</th>
+          <th>EXTERNAL MARKS</th>
+          <th>ATTENDANCE %</th>
+          <th>PROFESSOR NAME</th>
+      </tr>
+      <tr>
+          {%if name[0]%}
+        <td data-th="SUBJECT CODE">
+          {{name[0][0]}}
+        </td>
+        <td data-th="SUBJECT NAME">
+          {{name[0][1]}}
+        </td>
+        <td data-th="IA 1">
+          {{name[0][2]}}
+        </td>
+        <td data-th="IA 2">
+          {{name[0][3]}}
+        </td>
+        <td data-th="IA 3">
+          {{name[0][4]}}
+        </td>
+        <td data-th="AVG IA">
+          {{name[0][5]}}
+        </td>
+          <td data-th="ATTENDANCE %">
+          {{name[0][6]}}
+        </td>
+          <td data-th="EXTERNAL MARKS">
+          {{name[0][7]}}
+        </td>
+          <td data-th="PROFESSOR NAME">
+          {{name[0][8]}}
+        </td>
+          {%endif%}
+      </tr>
+    <tr>
+          {%if name[1]%}
+        <td data-th="SUBJECT CODE">
+          {{name[1][0]}}
+        </td>
+        <td data-th="SUBJECT NAME">
+          {{name[1][1]}}
+        </td>
+        <td data-th="IA 1">
+          {{name[1][2]}}
+        </td>
+        <td data-th="IA 2">
+          {{name[1][3]}}
+        </td>
+        <td data-th="IA 3">
+          {{name[1][4]}}
+        </td>
+        <td data-th="AVG IA">
+          {{name[1][5]}}
+        </td>
+          <td data-th="ATTENDANCE %">
+          {{name[1][6]}}
+        </td>
+          <td data-th="EXTERNAL MARKS">
+          {{name[1][7]}}
+        </td>
+        <td data-th="PROFESSOR NAME">
+          {{name[1][8]}}
+        </td>
+          {%endif%}
+      </tr>
+    <tr>
+          {%if name[2]%}
+        <td data-th="SUBJECT CODE">
+          {{name[2][0]}}
+        </td>
+        <td data-th="SUBJECT NAME">
+          {{name[2][1]}}
+        </td>
+        <td data-th="IA 1">
+          {{name[2][2]}}
+        </td>
+        <td data-th="IA 2">
+          {{name[2][3]}}
+        </td>
+        <td data-th="IA 3">
+          {{name[2][4]}}
+        </td>
+        <td data-th="AVG IA">
+          {{name[2][5]}}
+        </td>
+          <td data-th="ATTENDANCE %">
+          {{name[2][6]}}
+        </td>
+          <td data-th="EXTERNAL MARKS">
+          {{name[2][7]}}
+        </td>
+        <td data-th="PROFESSOR NAME">
+          {{name[2][8]}}
+        </td>
+          {%endif%}
+      </tr>
+    <tr>
+          {%if name[3]%}
+        <td data-th="SUBJECT CODE">
+          {{name[3][0]}}
+        </td>
+        <td data-th="SUBJECT NAME">
+          {{name[3][1]}}
+        </td>
+        <td data-th="IA 1">
+          {{name[3][2]}}
+        </td>
+        <td data-th="IA 2">
+          {{name[3][3]}}
+        </td>
+        <td data-th="IA 3">
+          {{name[3][4]}}
+        </td>
+        <td data-th="AVG IA">
+          {{name[3][5]}}
+        </td>
+          <td data-th="ATTENDANCE %">
+          {{name[3][6]}}
+        </td>
+          <td data-th="EXTERNAL MARKS">
+          {{name[3][7]}}
+        </td>
+        <td data-th="PROFESSOR NAME">
+          {{name[3][8]}}
+        </td>
+          {%endif%}
+      </tr>
+    <tr>
+          {%if name[4]%}
+        <td data-th="SUBJECT CODE">
+          {{name[4][0]}}
+        </td>
+        <td data-th="SUBJECT NAME">
+          {{name[4][1]}}
+        </td>
+        <td data-th="IA 1">
+          {{name[4][2]}}
+        </td>
+        <td data-th="IA 2">
+          {{name[4][3]}}
+        </td>
+        <td data-th="IA 3">
+          {{name[4][4]}}
+        </td>
+        <td data-th="AVG IA">
+          {{name[4][5]}}
+        </td>
+          <td data-th="ATTENDANCE %">
+          {{name[4][6]}}
+        </td>
+          <td data-th="EXTERNAL MARKS">
+          {{name[4][7]}}
+        </td>
+        <td data-th="PROFESSOR NAME">
+          {{name[4][8]}}
+        </td>
+          {%endif%}
+      </tr>
+    <tr>
+          {%if name[5]%}
+        <td data-th="SUBJECT CODE">
+          {{name[5][0]}}
+        </td>
+        <td data-th="SUBJECT NAME">
+          {{name[5][1]}}
+        </td>
+        <td data-th="IA 1">
+          {{name[5][2]}}
+        </td>
+        <td data-th="IA 2">
+          {{name[5][3]}}
+        </td>
+        <td data-th="IA 3">
+          {{name[5][4]}}
+        </td>
+        <td data-th="AVG IA">
+          {{name[5][5]}}
+        </td>
+          <td data-th="ATTENDANCE %">
+          {{name[5][6]}}
+        </td>
+          <td data-th="EXTERNAL MARKS">
+          {{name[5][7]}}
+        </td>
+        <td data-th="PROFESSOR NAME">
+          {{name[5][8]}}
+        </td>
+          {%endif%}
+      </tr>
+    <tr>
+          {%if name[6]%}
+        <td data-th="SUBJECT CODE">
+          {{name[6][0]}}
+        </td>
+        <td data-th="SUBJECT NAME">
+          {{name[6][1]}}
+        </td>
+        <td data-th="IA 1">
+          {{name[6][2]}}
+        </td>
+        <td data-th="IA 2">
+          {{name[6][3]}}
+        </td>
+        <td data-th="IA 3">
+          {{name[6][4]}}
+        </td>
+        <td data-th="AVG IA">
+          {{name[6][5]}}
+        </td>
+          <td data-th="ATTENDANCE %">
+          {{name[6][6]}}
+        </td>
+          <td data-th="EXTERNAL MARKS">
+          {{name[6][7]}}
+        </td>
+        <td data-th="PROFESSOR NAME">
+          {{name[6][8]}}
+        </td>
+          {%endif%}
+      </tr>
+    <tr>
+          {%if name[7]%}
+        <td data-th="SUBJECT CODE">
+          {{name[7][0]}}
+        </td>
+        <td data-th="SUBJECT NAME">
+          {{name[7][1]}}
+        </td>
+        <td data-th="IA 1">
+          {{name[7][2]}}
+        </td>
+        <td data-th="IA 2">
+          {{name[7][3]}}
+        </td>
+        <td data-th="IA 3">
+          {{name[7][4]}}
+        </td>
+        <td data-th="AVG IA">
+          {{name[7][5]}}
+        </td>
+          <td data-th="ATTENDANCE %">
+          {{name[7][6]}}
+        </td>
+          <td data-th="EXTERNAL MARKS">
+          {{name[7][7]}}
+        </td>
+        <td data-th="PROFESSOR NAME">
+          {{name[7][8]}}
+        </td>
+          {%endif%}
+      </tr>
+    <tr>
+          {%if name[8]%}
+        <td data-th="SUBJECT CODE">
+          {{name[8][0]}}
+        </td>
+        <td data-th="SUBJECT NAME">
+          {{name[8][1]}}
+        </td>
+        <td data-th="IA 1">
+          {{name[8][2]}}
+        </td>
+        <td data-th="IA 2">
+          {{name[8][3]}}
+        </td>
+        <td data-th="IA 3">
+          {{name[8][4]}}
+        </td>
+        <td data-th="AVG IA">
+          {{name[8][5]}}
+        </td>
+          <td data-th="ATTENDANCE %">
+          {{name[8][6]}}
+        </td>
+          <td data-th="EXTERNAL MARKS">
+          {{name[8][7]}}
+        </td>
+        <td data-th="PROFESSOR NAME">
+          {{name[8][8]}}
+        </td>
+          {%endif%}
+      </tr>
+    <tr>
+          {%if name[9]%}
+        <td data-th="SUBJECT CODE">
+          {{name[9][0]}}
+        </td>
+        <td data-th="SUBJECT NAME">
+          {{name[9][1]}}
+        </td>
+        <td data-th="IA 1">
+          {{name[9][2]}}
+        </td>
+        <td data-th="IA 2">
+          {{name[9][3]}}
+        </td>
+        <td data-th="IA 3">
+          {{name[9][4]}}
+        </td>
+        <td data-th="AVG IA">
+          {{name[9][5]}}
+        </td>
+          <td data-th="ATTENDANCE %">
+          {{name[9][6]}}
+        </td>
+          <td data-th="EXTERNAL MARKS">
+          {{name[9][7]}}
+        </td>
+        <td data-th="PROFESSOR NAME">
+          {{name[9][8]}}
+        </td>
+          {%endif%}
+      </tr>
+    </tbody>
+  </table>
+</div>
+  {%endif%}
+  {%if error%}
+  <div align="center"><h1 style="color:red;">{{error}}</h1></div>
+  {%endif%}
+</body>
+</html>

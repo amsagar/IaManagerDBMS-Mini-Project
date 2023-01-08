@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+    <link rel="icon" type="image/x-icon" href= "{{ url_for('static',filename='img/icon.ico') }}">
+    <meta charset="utf-8">
+  <style>
+    .container{
+  margin: 0 auto;
+  border-radius: 12px;
+}
+
+
+tb{
+  margin: 0 auto;
+}
+
+td, .container.th {
+  color:white;
+  text-align:center;
+  border-radius: 25px;
+  border: 2px solid #73AD21;
+}
+
+  </style>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>IA MANAGEMENT SYSTEM</title>
+    <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,600" rel="stylesheet">
+    <link rel="stylesheet" href= "{{ url_for('static',filename='styles/style.css') }}">
+	<script src="https://unpkg.com/animejs@3.0.1/lib/anime.min.js"></script>
+    <script src="https://unpkg.com/scrollreveal@4.0.0/dist/scrollreveal.min.js"></script>
+</head>
+<body class="is-boxed has-animations">
+  <div style="padding-left:30px;">
+      <table>
+        <thead>
+        <tr>
+          <th>
+            <img class="header-logo-image" src="{{ url_for('static',filename='img/logo.png') }}" alt="Logo" style="height:180px; padding:20px;">
+          </th>
+          <th>
+            <h1 style="margin-left:-90px;margin-top:10px;">GM INSTITUTE OF TECHNOLOGY DAVANAGERE</h1>
+          </th>
+        </tr>
+        </thead>
+      </table>
+  </div>
+  {%if name%}
+   <div class="container">
+      <h2>IA MARKS</h2>
+      <table class="tb">
+        <thead>
+          <tr>
+            <th style="text-align:center;">SUBJECT CODE</th>
+            <th style="text-align:center;">SUBJECT NAME</th>
+            <th style="text-align:center;">IA 1</th>
+            <th style="text-align:center;">IA 2</th>
+            <th style="text-align:center;">IA 3</th>
+            <th style="text-align:center;">AVERAGE IA</th>
+          <tr>
+        </thead>
+        <tbody>
+          <tr>
+            {%if name[0]%}
+            <td>{{name[0][1]}}</td>
+            <td>{{name[0][2]}}</td>
+            <td>{{name[0][3]}}</td>
+            <td>{{name[0][4]}}</td>
+            <td>{{name[0][5]}}</td>
+            <td>{{name[0][6]}}</td>
+            {%endif%}
+          </tr>
+          <tr>
+            {%if name[1]%}
+            <td>{{name[1][1]}}</td>
+            <td>{{name[1][2]}}</td>
+            <td>{{name[1][3]}}</td>
+            <td>{{name[1][4]}}</td>
+            <td>{{name[1][5]}}</td>
+            <td>{{name[1][6]}}</td>
+            {%endif%}
+          </tr>
+        <tr>
+            {%if name[2]%}
+            <td>{{name[2][1]}}</td>
+            <td>{{name[2][2]}}</td>
+            <td>{{name[2][3]}}</td>
+            <td>{{name[2][4]}}</td>
+            <td>{{name[2][5]}}</td>
+            <td>{{name[2][6]}}</td>
+            {%endif%}
+          </tr>
+        <tr>
+            {%if name[3]%}
+            <td>{{name[3][1]}}</td>
+            <td>{{name[3][2]}}</td>
+            <td>{{name[3][3]}}</td>
+            <td>{{name[3][4]}}</td>
+            <td>{{name[3][5]}}</td>
+            <td>{{name[3][6]}}</td>
+            {%endif%}
+          </tr>
+        <tr>
+            {%if name[4]%}
+            <td>{{name[4][1]}}</td>
+            <td>{{name[4][2]}}</td>
+            <td>{{name[4][3]}}</td>
+            <td>{{name[4][4]}}</td>
+            <td>{{name[4][5]}}</td>
+            <td>{{name[4][6]}}</td>
+            {%endif%}
+          </tr>
+        <tr>
+            {%if name[5]%}
+            <td>{{name[5][1]}}</td>
+            <td>{{name[5][2]}}</td>
+            <td>{{name[5][3]}}</td>
+            <td>{{name[5][4]}}</td>
+            <td>{{name[5][5]}}</td>
+            <td>{{name[5][6]}}</td>
+            {%endif%}
+          </tr>
+        <tr>
+            {%if name[6]%}
+            <td>{{name[6][1]}}</td>
+            <td>{{name[6][2]}}</td>
+            <td>{{name[6][3]}}</td>
+            <td>{{name[6][4]}}</td>
+            <td>{{name[6][5]}}</td>
+            <td>{{name[6][6]}}</td>
+            {%endif%}
+          </tr>
+        <tr>
+            {%if name[7]%}
+            <td>{{name[7][1]}}</td>
+            <td>{{name[7][2]}}</td>
+            <td>{{name[7][3]}}</td>
+            <td>{{name[7][4]}}</td>
+            <td>{{name[7][5]}}</td>
+            <td>{{name[7][6]}}</td>
+            {%endif%}
+          </tr>
+        <tr>
+            {%if name[8]%}
+            <td>{{name[8][1]}}</td>
+            <td>{{name[8][2]}}</td>
+            <td>{{name[8][3]}}</td>
+            <td>{{name[8][4]}}</td>
+            <td>{{name[8][5]}}</td>
+            <td>{{name[8][6]}}</td>
+            {%endif%}
+          </tr>
+        <tr>
+            {%if name[9]%}
+            <td>{{name[9][1]}}</td>
+            <td>{{name[9][2]}}</td>
+            <td>{{name[9][3]}}</td>
+            <td>{{name[9][4]}}</td>
+            <td>{{name[9][5]}}</td>
+            <td>{{name[9][6]}}</td>
+            {%endif%}
+          </tr>
+        </tbody>
+        <!-- footer
+        <tfoot>
+          <tr>
+            <td colspan=3>Maximum Marks: </td>
+            <td colspan=3>Marks Obtained: </td>
+            <td colspan=2>Grade: </td>
+          </tr>
+        </tfoot> footer ends-->
+      </table>
+    </div>
+  {%endif%}
+  {%if error%}
+  <div align="center"><h1 style="color:red;">{{error}}</h1></div>
+  {%endif%}
+</body>
+</html>

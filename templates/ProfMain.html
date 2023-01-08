@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+    <meta charset="utf-8">
+    <link rel="icon" type="image/x-icon" href= "{{ url_for('static',filename='img/icon.ico') }}">
+        <style>
+body {
+  --light: hsl(220, 50%, 90%);
+  --primary: hsl(255, 30%, 55%);
+  --focus: hsl(210, 90%, 50%);
+  --border-color: hsla(0, 0%, 100%, .2);
+  --global-background: hsl(220, 25%, 10%);
+  --background: linear-gradient(to right, hsl(0, 30%, 20%), hsl(240, 30%, 25%));
+  --shadow-1: hsla(236, 50%, 50%, .3);
+  --shadow-2: hsla(236, 50%, 50%, .4);
+
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Open Sans', sans-serif;
+  color: var(--light);
+  background: var(--global-background);
+}
+
+a,
+a:link {
+  font-family: inherit;
+  text-decoration: none;
+}
+
+a:focus {
+  outline: none;
+}
+
+button::-moz-focus-inner {
+  border: 0;
+}
+
+
+/* box */
+.box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 0 4rem 2rem;
+}
+
+.box:not(:first-child) {
+  height: 45rem;
+}
+
+.box__title {
+  font-size: 10rem;
+  font-weight: normal;
+  letter-spacing: .8rem;
+  margin-bottom: 2.6rem;
+}
+
+.box__title::first-letter {
+  color: var(--primary);
+}
+
+.box__p,
+.box__info,
+.box__note {
+  font-size: 1.6rem;
+}
+
+.box__info {
+  margin-top: 6rem;
+}
+
+.box__note {
+  line-height: 2;
+}
+
+
+/* modal */
+.modal-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+
+  display: none;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  height: 100%;
+
+  /* --m-background is set as inline style */
+  background: var(--m-background);
+}
+
+/* using :target */
+/*
+when users will click/enter button(link) browser will add a #id in a url and when that happens we'll show our users the modal that contains that id.
+*/
+.modal-container:target {
+  display: flex;
+}
+
+.modal {
+  width: 60rem;
+  padding: 4rem 2rem;
+  border-radius: .8rem;
+
+  color: var(--light);
+  background: var(--background);
+  box-shadow: var(--m-shadow, .4rem .4rem 10.2rem .2rem) var(--shadow-1);
+  position: relative;
+
+  overflow: hidden;
+}
+
+.modal__title {
+  font-size: 3.2rem;
+}
+
+.modal__title1 {
+  font-size: 1rem;
+}
+.modal__text {
+  padding: 0 4rem;
+  margin-top: 4rem;
+
+  font-size: 1.6rem;
+  line-height: 2;
+}
+.modal__btn1 {
+  margin-top: 4rem;
+  padding: 1rem 1.6rem;
+  border: 1px solid var(--border-color);
+  border-radius: 100rem;
+
+  color: inherit;
+  background: transparent;
+  font-size: 1rem;
+  font-family: inherit;
+  letter-spacing: .2rem;
+
+  transition: .2s;
+  cursor: pointer;
+}
+
+.modal__btn2 {
+  margin-top: 2rem;
+  padding: 1rem 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 100rem;
+
+  color: inherit;
+  background: transparent;
+  font-size: 1rem;
+  font-family: inherit;
+  letter-spacing: .2rem;
+
+  transition: .2s;
+  cursor: pointer;
+}
+.modal__btn {
+  margin-top: 1rem;
+  padding: 1rem 1.6rem;
+  border: 1px solid var(--border-color);
+  border-radius: 100rem;
+
+  color: inherit;
+  background: transparent;
+  font-size: 1rem;
+  font-family: inherit;
+  letter-spacing: .2rem;
+
+  transition: .2s;
+  cursor: pointer;
+}
+
+.modal__btn:nth-of-type(1) {
+  margin-right: 1rem;
+}
+
+.modal__btn:hover,
+.modal__btn:focus {
+  background: var(--focus);
+  border-color: var(--focus);
+  transform: translateY(-.2rem);
+}
+
+
+/* link-... */
+.link-1 {
+  font-size: 1.8rem;
+
+  color: var(--light);
+  background: var(--background);
+  box-shadow: .4rem .4rem 2.4rem .2rem var(--shadow-1);
+  border-radius: 100rem;
+  padding: 1.4rem 3.2rem;
+
+  transition: .2s;
+}
+
+.link-1:hover,
+.link-1:focus {
+  transform: translateY(-.2rem);
+  box-shadow: 0 0 4.4rem .2rem var(--shadow-2);
+}
+
+.link-1:focus {
+  box-shadow:
+    0 0 4.4rem .2rem var(--shadow-2),
+    0 0 0 .4rem var(--global-background),
+    0 0 0 .5rem var(--focus);
+}
+
+.link-2 {
+  width: 4rem;
+  height: 4rem;
+  border: 1px solid var(--border-color);
+  border-radius: 100rem;
+
+  color: inherit;
+  font-size: 2.2rem;
+
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  transition: .2s;
+}
+
+.link-2::before {
+  content: '×';
+
+  transform: translateY(-.1rem);
+}
+
+.link-2:hover,
+.link-2:focus {
+  background: var(--focus);
+  border-color: var(--focus);
+  transform: translateY(-.2rem);
+}
+
+.abs-site-link {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  color: hsla(0, 0%, 1000%, .6);
+  font-size: 1.6rem;
+}
+    </style>
+	<style>
+	/* This border is simply to see the block you have around each paragraph */
+.Block {
+	padding: 2px;
+	margin: 2px;
+  width: 40%;
+}
+
+.adjacentBlock {
+	float: left;
+}
+.jumbotron h1 {
+	color: #353535;
+}
+span.icon {
+	margin: 0 5px;
+	color: #D64541;
+}
+h2 {
+	color: #BDC3C7
+}
+.mrng-60-top {
+	margin-top: 60px;
+}
+/* Global Button Styles */
+a.animated-button:link, a.animated-button:visited {
+	position: relative;
+	display: block;
+	margin: 30px auto 0;
+	padding: 14px 15px;
+	color: #fff;
+	font-size:14px;
+	font-weight: bold;
+	text-align: center;
+	text-decoration: none;
+	text-transform: uppercase;
+	overflow: hidden;
+	letter-spacing: .08em;
+	border-radius: 0;
+	text-shadow: 0 0 1px rgba(0, 0, 0, 0.2), 0 1px 0 rgba(0, 0, 0, 0.2);
+	-webkit-transition: all 1s ease;
+	-moz-transition: all 1s ease;
+	-o-transition: all 1s ease;
+	transition: all 1s ease;
+}
+a.animated-button:link:after, a.animated-button:visited:after {
+	content: "";
+	position: absolute;
+	height: 0%;
+	left: 50%;
+	top: 50%;
+	width: 150%;
+	z-index: -1;
+	-webkit-transition: all 0.75s ease 0s;
+	-moz-transition: all 0.75s ease 0s;
+	-o-transition: all 0.75s ease 0s;
+	transition: all 0.75s ease 0s;
+}
+a.animated-button:link:hover, a.animated-button:visited:hover {
+	color: #FFF;
+	text-shadow: none;
+}
+a.animated-button:link:hover:after, a.animated-button:visited:hover:after {
+	height: 450%;
+}
+a.animated-button:link, a.animated-button:visited {
+	position: relative;
+	display: block;
+	margin: 30px auto 0;
+	padding: 14px 15px;
+	color: #fff;
+	font-size:14px;
+	border-radius: 0;
+	font-weight: bold;
+	text-align: center;
+	text-decoration: none;
+	text-transform: uppercase;
+	overflow: hidden;
+	letter-spacing: .08em;
+	text-shadow: 0 0 1px rgba(0, 0, 0, 0.2), 0 1px 0 rgba(0, 0, 0, 0.2);
+	-webkit-transition: all 1s ease;
+	-moz-transition: all 1s ease;
+	-o-transition: all 1s ease;
+	transition: all 1s ease;
+}
+
+/* Victoria Buttons */
+
+a.animated-button.victoria-one {
+	border: 2px solid #D24D57;
+}
+a.animated-button.victoria-one:after {
+	background: #D24D57;
+	-moz-transform: translateX(-50%) translateY(-50%) rotate(-25deg);
+	-ms-transform: translateX(-50%) translateY(-50%) rotate(-25deg);
+	-webkit-transform: translateX(-50%) translateY(-50%) rotate(-25deg);
+	transform: translateX(-50%) translateY(-50%) rotate(-25deg);
+}
+a.animated-button.victoria-two {
+	border: 2px solid #D24D57;
+}
+a.animated-button.victoria-two:after {
+	background: #D24D57;
+	-moz-transform: translateX(-50%) translateY(-50%) rotate(25deg);
+	-ms-transform: translateX(-50%) translateY(-50%) rotate(25deg);
+	-webkit-transform: translateX(-50%) translateY(-50%) rotate(25deg);
+	transform: translateX(-50%) translateY(-50%) rotate(25deg);
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.topnav {
+  overflow: hidden;
+  background-color: #333;
+  height:3cm;
+}
+
+
+.topnav a {
+border-radius: 15px 50px 30px;
+  float: right;
+  color: #03f0fc;
+  text-align: center;
+  padding: 14px 16px;
+  margin-bottom: 20cm;
+  margin-top:-40px;
+  margin-right:20px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+	border-radius: 15px 50px 30px;
+  background-color: #03fc80;
+  color: black;
+}
+
+.topnav a.active {
+  background-color: #03fc80;
+  color: black;
+}
+.parent {
+  margin: 1rem;
+  padding: 2rem 2rem;
+  text-align: center;
+}
+.child {
+  display: inline-block;
+  border: 1px solid red;
+  padding: 1rem 1rem;
+  vertical-align: middle;
+}
+</style>
+
+    <style>
+        .container {
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  height: 1vh;
+  width:10vh;
+}
+
+a {
+  font-size: 1.5rem;
+  padding: 1rem 3rem;
+  color: #f4f4f4;
+  text-transform: uppercase;
+}
+
+.btn {
+  text-decoration: none;
+  border: 1px solid rgb(146, 148, 248);
+  border-color: red;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn:hover {
+  box-shadow: 1px 1px 25px 10px rgba(146, 148, 248, 0.4);
+}
+
+.btn:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(146, 148, 248, 0.4),
+    transparent
+  );
+  transition: all 650ms;
+}
+
+.btn:hover:before {
+  left: 100%;
+}
+
+p{
+    text-align:center;
+}
+    </style>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>IA MANAGEMENT SYSTEM</title>
+    <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,600" rel="stylesheet">
+    <link rel="stylesheet" href= "{{ url_for('static',filename='styles/style.css') }}">
+	<script src="https://unpkg.com/animejs@3.0.1/lib/anime.min.js"></script>
+    <script src="https://unpkg.com/scrollreveal@4.0.0/dist/scrollreveal.min.js"></script>
+</head>
+<body>
+<div style="padding-left:16px;margin-bottom:-2cm;">
+    <div style="padding-left:30px;">
+      <table>
+        <thead>
+        <tr>
+          <th>
+            <img class="header-logo-image" src="{{ url_for('static',filename='img/logo.png') }}" alt="Logo" style="height:180px; padding:20px;">
+          </th>
+          <th>
+            <h1 style="margin-left:-40px;margin-top:10px;">GM INSTITUTE OF TECHNOLOGY DAVANAGERE</h1>
+          </th>
+            <th>
+                <div align="center">
+           <div class="container">
+      <a href="{{url_for('logoutp')}}" class="btn">LOGOUT</a>
+           </div>
+            </th>
+        </tr>
+        </thead>
+      </table>
+  </div>
+    <div align="center">
+        <h3 align="center">PROFESSOR DETAILS</h3>
+        {%if id%}<p>Professor ID : {{id}}</p>{%endif%}
+            {%if name%}<p>NAME : {{name}}</p>{%endif%}
+        {%if err%}<h2 style="color:red">{{err}}</h2>{%endif%}
+        {%if status%}<h2 style="color:green">{{status}}</h2>{%endif%}
+
+    </div>
+</div>
+            <div class='parent'>
+        <div><a href="#m3-o" class="btn btn-sm animated-button victoria-one">CREATE STUDENT ID's</a></div>
+        <div><a href="#m3-1" class="btn btn-sm animated-button victoria-two">GET MARKS SHEET FORMAT</a> </div>
+                <div><a href="#m3-2" class="btn btn-sm animated-button victoria-one">UPLOAD MARKS SHEET</a> </div>
+                <div><a href="#m3-3" class="btn btn-sm animated-button victoria-one">CHECK MARKS OF A STUDENT</a> </div>
+                <div><a href="#m3-4" class="btn btn-sm animated-button victoria-one">UPDATE MARKS OF A STUDENT</a> </div>
+                <div><a href="#m3-5" class="btn btn-sm animated-button victoria-one">DELETE STUDENT IA DATA</a> </div>
+<div class="box" style="height:1cm;">
+  <div class="modal-container" id="m3-o" style="--m-background: var(--global-background);">
+    <div class="modal" style="--m-shadow: 0 0 10rem 0">
+      <h1 class="modal__title">ENTER DETAILS</h1>
+         <form action="{{url_for('create')}}" method="post" enctype="multipart/form-data">
+                    <input class="modal__btn1" type="text" name="scheme" placeholder="SCHEME"  style="margin:20px;" required><br><br>
+                    <a href="{{url_for('down1')}}" class="modal__btn1">DOWLOAD LIST FORMAT</a><br><br>
+                    <input type = "file" name="file" placeholder="SELECT STUDENT's LIST" accept="text/csv"/>
+					<button class="modal__btn">CREATE &rarr;</button>
+				  </form>
+      <a href="#m3-c" class="link-2"></a>
+    </div>
+  </div>
+</div>
+                <div class="box" style="height:1cm;">
+      <div class="modal-container" id="m3-5" style="--m-background: var(--global-background);">
+        <div class="modal" style="--m-shadow: 0 0 10rem 0">
+          <h1 class="modal__title">ENTER STUDENT DETAILS</h1>
+          <form action="{{url_for('delFun')}}" method="post" enctype="multipart/form-data">
+              <label class="modal__title1" style="margin-right:20px;">ENTER USN</label>
+                    <input type="text" name="susn" class="modal__btn2" placeholder="STUDENT USN" required><br>
+                    <label class="modal__title1" style="margin-right:20px;">SELECT SCHEME</label>
+                    <select name="scheme" class="modal__btn2">
+                            <option value=2018>2018</option>
+                            <option value=2021>2021</option>
+                            <option value=2022>2022</option>
+                    </select><br>
+              <label class="modal__title1" style="margin-right:20px;">SELECT SEMESTER</label>
+                    <select name="sem" class="modal__btn2">
+                            <option value='1'>1st SEM</option>
+                            <option value='2'>2nd SEM</option>
+                            <option value='3'>3rd SEM</option>
+                            <option value='4'>4th SEM</option>
+                            <option value='5'>5th SEM</option>
+                            <option value='6'>6th SEM</option>
+                            <option value='7'>7th SEM</option>
+                            <option value='8'>8th SEM</option>
+                    </select><br>
+              <label class="modal__title1" style="margin-right:20px;">ENTER SUBCODE</label>
+                    <input type="text" name="sub" class="modal__btn2" placeholder="SUBCODE " required><br>
+					<button class="modal__btn">CONFIRM</button>
+				  </form>
+          <a href="#m3-c" class="link-2"></a>
+        </div>
+  </div>
+</div>
+                 <div class="box" style="height:1cm;">
+      <div class="modal-container" id="m3-4" style="--m-background: var(--global-background);">
+        <div class="modal" style="--m-shadow: 0 0 10rem 0">
+          <h1 class="modal__title">ENTER STUDENT DETAILS</h1>
+          <form action="{{url_for('update')}}" method="post" enctype="multipart/form-data">
+                    <label class="modal__title1" style="margin-right:20px;">SELECT SCHEME</label>
+                    <select name="scheme" class="modal__btn2">
+                            <option value=2018>2018</option>
+                            <option value=2021>2021</option>
+                            <option value=2022>2022</option>
+                    </select><br>
+              <label class="modal__title1" style="margin-right:20px;">SELECT SEMESTER</label>
+                    <select name="sem" class="modal__btn2">
+                            <option value='1'>1st SEM</option>
+                            <option value='2'>2nd SEM</option>
+                            <option value='3'>3rd SEM</option>
+                            <option value='4'>4th SEM</option>
+                            <option value='5'>5th SEM</option>
+                            <option value='6'>6th SEM</option>
+                            <option value='7'>7th SEM</option>
+                            <option value='8'>8th SEM</option>
+                    </select><br>
+              <label class="modal__title1" style="margin-right:20px;">ENTER SUBCODE</label>
+                    <input type="text" name="sub" class="modal__btn2" placeholder="SUBCODE" required><br><br>
+              <a href="{{url_for('down3')}}" class="modal__btn1">DOWLOAD FORMAT SHEET</a><br><br>
+              <input type = "file" name="file" placeholder="SELECT MARKS's LIST" accept="text/csv"/>
+					<button class="modal__btn">UPDATE &rarr;</button>
+				  </form>
+          <a href="#m3-c" class="link-2"></a>
+        </div>
+  </div>
+</div>
+                <div class="box" style="height:1cm;">
+      <div class="modal-container" id="m3-3" style="--m-background: var(--global-background);">
+        <div class="modal" style="--m-shadow: 0 0 10rem 0">
+          <h1 class="modal__title">ENTER STUDENT DETAILS</h1>
+          <form action="{{url_for('check')}}" method="post" enctype="multipart/form-data">
+                    <label class="modal__title1" style="margin-right:20px;">SELECT SCHEME</label>
+                    <select name="scheme" class="modal__btn2">
+                            <option value=2018>2018</option>
+                            <option value=2021>2021</option>
+                            <option value=2022>2022</option>
+                    </select><br>
+              <label class="modal__title1" style="margin-right:20px;">SELECT SEMESTER</label>
+                    <select name="sem" class="modal__btn2">
+                            <option value='1'>1st SEM</option>
+                            <option value='2'>2nd SEM</option>
+                            <option value='3'>3rd SEM</option>
+                            <option value='4'>4th SEM</option>
+                            <option value='5'>5th SEM</option>
+                            <option value='6'>6th SEM</option>
+                            <option value='7'>7th SEM</option>
+                            <option value='8'>8th SEM</option>
+                    </select><br>
+              <label class="modal__title1" style="margin-right:20px;">ENTER USN</label>
+                    <input type="text" name="susn" class="modal__btn2" placeholder="STUDENT USN" required><br>
+					<button class="modal__btn">GET SHEET &rarr;</button>
+				  </form>
+          <a href="#m3-c" class="link-2"></a>
+        </div>
+  </div>
+</div>
+                <div class="box" style="height:1cm;">
+      <div class="modal-container" id="m3-1" style="--m-background: var(--global-background);">
+        <div class="modal" style="--m-shadow: 0 0 10rem 0">
+          <h1 class="modal__title">ENTER DETAILS</h1>
+          <form action="{{url_for('getformat')}}" method="post" enctype="multipart/form-data">
+                    <label class="modal__title1" style="margin-right:20px;">SELECT SCHEME</label>
+                    <select name="scheme" class="modal__btn2">
+                            <option value=2018>2018</option>
+                            <option value=2021>2021</option>
+                            <option value=2022>2022</option>
+                    </select><br>
+              <label class="modal__title1" style="margin-right:20px;">SELECT USN FORMAT</label>
+                    <select name="usn" class="modal__btn2">
+                            <option value='4GM19CS4GM20CS4'>4GM19CS</option>
+                         <option value='4GM20CS4GM21CS4'>4GM20CS</option>
+                         <option value='4GM21CS4GM22CS4'>4GM21CS</option>
+                         <option value='4GM22CS4GM23CS4'>4GM22CS</option>
+                    </select><br>
+					<button class="modal__btn">GET SHEET &rarr;</button>
+				  </form>
+          <a href="#m3-c" class="link-2"></a>
+        </div>
+  </div>
+</div>
+                <div class="box" style="height:1cm;">
+      <div class="modal-container" id="m3-2" style="--m-background: var(--global-background);">
+        <div class="modal" style="--m-shadow: 0 0 10rem 0">
+          <h1 class="modal__title">ENTER DETAILS</h1>
+          <form action="{{url_for('upload')}}" method="post" enctype="multipart/form-data">
+                    <label class="modal__title1" style="margin-right:20px;">SELECT SCHEME</label>
+                    <select name="scheme" class="modal__btn2">
+                            <option value='2018'>2018</option>
+                            <option value='2021'>2021</option>
+                            <option value='2022'>2022</option>
+                    </select><br>
+               <label class="modal__title1" style="margin-right:20px;">SELECT SEMESTER</label>
+                    <select name="sem" class="modal__btn2">
+                            <option value='1'>1st SEM</option>
+                            <option value='2'>2nd SEM</option>
+                            <option value='3'>3rd SEM</option>
+                            <option value='4'>4th SEM</option>
+                            <option value='5'>5th SEM</option>
+                            <option value='6'>6th SEM</option>
+                            <option value='7'>7th SEM</option>
+                            <option value='8'>8th SEM</option>
+                    </select><br>
+              <label class="modal__title1" style="margin-right:20px;">ENTER PROFESSOR ID</label>
+                    <input type="text" name="pid" class="modal__btn2" placeholder="PROFESSOR ID" required><br>
+              <label class="modal__title1" style="margin-right:20px;">ENTER SUBJECT CODE</label>
+                    <input type="text" name="subcode" class="modal__btn2" placeholder="SUBJECT CODE" required><br>
+              <label class="modal__title1" style="margin-right:20px;">ENTER SUBJECT NAME</label>
+                    <input type="text" name="subname" class="modal__btn2" placeholder="SUBJECT NAME" required><br>
+                    <input type = "file" name="file" placeholder="SELECT MARKS's LIST" accept="text/csv"/>
+					<button class="modal__btn">UPLOAD &rarr;</button>
+				  </form>
+          <a href="#m3-c" class="link-2"></a>
+        </div>
+  </div>
+</div>
+    </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+        </div>
+    <script src="{{ url_for('static',filename='styles/main.min.js') }}"></script>
+</body>
+</html>

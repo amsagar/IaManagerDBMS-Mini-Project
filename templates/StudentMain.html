@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+    <link rel="icon" type="image/x-icon" href= "{{ url_for('static',filename='img/icon.ico') }}">
+    <meta charset="utf-8">
+	<style>
+	/* This border is simply to see the block you have around each paragraph */
+.Block {
+	padding: 2px;
+	margin: 2px;
+  width: 40%;
+}
+
+.adjacentBlock {
+	float: left;
+}
+.jumbotron h1 {
+	color: #353535;
+}
+span.icon {
+	margin: 0 5px;
+	color: #D64541;
+}
+h2 {
+	color: #BDC3C7
+}
+.mrng-60-top {
+	margin-top: 60px;
+}
+/* Global Button Styles */
+a.animated-button:link, a.animated-button:visited {
+	position: relative;
+	display: block;
+	margin: 30px auto 0;
+	padding: 14px 15px;
+	color: #fff;
+	font-size:14px;
+	font-weight: bold;
+	text-align: center;
+	text-decoration: none;
+	text-transform: uppercase;
+	overflow: hidden;
+	letter-spacing: .08em;
+	border-radius: 0;
+	text-shadow: 0 0 1px rgba(0, 0, 0, 0.2), 0 1px 0 rgba(0, 0, 0, 0.2);
+	-webkit-transition: all 1s ease;
+	-moz-transition: all 1s ease;
+	-o-transition: all 1s ease;
+	transition: all 1s ease;
+}
+a.animated-button:link:after, a.animated-button:visited:after {
+	content: "";
+	position: absolute;
+	height: 0%;
+	left: 50%;
+	top: 50%;
+	width: 150%;
+	z-index: -1;
+	-webkit-transition: all 0.75s ease 0s;
+	-moz-transition: all 0.75s ease 0s;
+	-o-transition: all 0.75s ease 0s;
+	transition: all 0.75s ease 0s;
+}
+a.animated-button:link:hover, a.animated-button:visited:hover {
+	color: #FFF;
+	text-shadow: none;
+}
+a.animated-button:link:hover:after, a.animated-button:visited:hover:after {
+	height: 450%;
+}
+a.animated-button:link, a.animated-button:visited {
+	position: relative;
+	display: block;
+	margin: 30px auto 0;
+	padding: 14px 15px;
+	color: #fff;
+	font-size:14px;
+	border-radius: 0;
+	font-weight: bold;
+	text-align: center;
+	text-decoration: none;
+	text-transform: uppercase;
+	overflow: hidden;
+	letter-spacing: .08em;
+	text-shadow: 0 0 1px rgba(0, 0, 0, 0.2), 0 1px 0 rgba(0, 0, 0, 0.2);
+	-webkit-transition: all 1s ease;
+	-moz-transition: all 1s ease;
+	-o-transition: all 1s ease;
+	transition: all 1s ease;
+}
+
+/* Victoria Buttons */
+
+a.animated-button.victoria-one {
+	border: 2px solid #D24D57;
+}
+a.animated-button.victoria-one:after {
+	background: #D24D57;
+	-moz-transform: translateX(-50%) translateY(-50%) rotate(-25deg);
+	-ms-transform: translateX(-50%) translateY(-50%) rotate(-25deg);
+	-webkit-transform: translateX(-50%) translateY(-50%) rotate(-25deg);
+	transform: translateX(-50%) translateY(-50%) rotate(-25deg);
+}
+a.animated-button.victoria-two {
+	border: 2px solid #D24D57;
+}
+a.animated-button.victoria-two:after {
+	background: #D24D57;
+	-moz-transform: translateX(-50%) translateY(-50%) rotate(25deg);
+	-ms-transform: translateX(-50%) translateY(-50%) rotate(25deg);
+	-webkit-transform: translateX(-50%) translateY(-50%) rotate(25deg);
+	transform: translateX(-50%) translateY(-50%) rotate(25deg);
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.topnav {
+  overflow: hidden;
+  background-color: #333;
+  height:3cm;
+}
+
+
+.topnav a {
+border-radius: 15px 50px 30px;
+  float: right;
+  color: #03f0fc;
+  text-align: center;
+  padding: 14px 16px;
+  margin-bottom: 20cm;
+  margin-top:-40px;
+  margin-right:20px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+	border-radius: 15px 50px 30px;
+  background-color: #03fc80;
+  color: black;
+}
+
+.topnav a.active {
+  background-color: #03fc80;
+  color: black;
+}
+.parent {
+  margin: 1rem;
+  padding: 2rem 2rem;
+  text-align: center;
+}
+.child {
+  display: inline-block;
+  border: 1px solid red;
+  padding: 1rem 1rem;
+  vertical-align: middle;
+}
+</style>
+    <style>
+        .container {
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  height: 1vh;
+  width:10vh;
+}
+
+a {
+  font-size: 1.5rem;
+  padding: 1rem 3rem;
+  color: #f4f4f4;
+  text-transform: uppercase;
+}
+
+.btn {
+  text-decoration: none;
+  border: 1px solid rgb(146, 148, 248);
+  border-color: red;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn:hover {
+  box-shadow: 1px 1px 25px 10px rgba(146, 148, 248, 0.4);
+}
+
+.btn:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(146, 148, 248, 0.4),
+    transparent
+  );
+  transition: all 650ms;
+}
+
+.btn:hover:before {
+  left: 100%;
+}
+
+p{
+    text-align:center;
+}
+    </style>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>IA MANAGEMENT SYSTEM</title>
+    <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,600" rel="stylesheet">
+    <link rel="stylesheet" href= "{{ url_for('static',filename='styles/style.css') }}">
+	<script src="https://unpkg.com/animejs@3.0.1/lib/anime.min.js"></script>
+    <script src="https://unpkg.com/scrollreveal@4.0.0/dist/scrollreveal.min.js"></script>
+</head>
+<body>
+
+<div style="padding-left:16px;margin-bottom:-2cm;">
+    <div style="padding-left:30px;">
+      <table>
+        <thead>
+        <tr>
+          <th>
+            <img class="header-logo-image" src="{{ url_for('static',filename='img/logo.png') }}" alt="Logo" style="height:180px; padding:20px;">
+          </th>
+          <th>
+            <h1 style="margin-left:-40px;margin-top:10px;">GM INSTITUTE OF TECHNOLOGY DAVANAGERE</h1>
+          </th>
+            <th>
+                <div align="center">
+           <div class="container">
+      <a href="{{url_for('logouts')}}" class="btn">LOGOUT</a>
+           </div>
+            </th>
+        </tr>
+        </thead>
+      </table>
+  </div>
+
+        <h3 align="center">STUDENT DETAILS</h3>
+          {%if usn%}<p>USN : {{usn}}</p>{%endif%}
+    {%if uname%}<p>Student Name : {{uname}}</p>{%endif%}
+    {%if scheme%}<p>Scheme : {{scheme}}</p>{%endif%}
+    {%if ph%}<p>Phone Number : {{ph}}</p>{%endif%}
+    {%if email%}<p>Email Id : {{email}}</p>{%endif%}
+
+    </div>
+</div>
+            <div class='parent'>
+                <h2>RESULTS</h2>
+                <form method="post">
+                <div><a href="{{url_for('semres1')}}" class="btn btn-sm animated-button victoria-one">1ST SEM</a></div>
+                <div><a href="{{url_for('semres2')}}" class="btn btn-sm animated-button victoria-two">2ND SEM</a> </div>
+                <div><a href="{{url_for('semres3')}}" class="btn btn-sm animated-button victoria-one">3RD SEM</a></div>
+                <div><a href="{{url_for('semres4')}}" class="btn btn-sm animated-button victoria-two">4TH SEM</a></div>
+                <div> <a href="{{url_for('semres5')}}" class="btn btn-sm animated-button victoria-one">5TH SEM</a></div>
+                <div><a href="{{url_for('semres6')}}" class="btn btn-sm animated-button victoria-two">6TH SEM</a></div>
+                <div><a href="{{url_for('semres7')}}" class="btn btn-sm animated-button victoria-one">7TH SEM</a></div>
+                <div> <a href="{{url_for('semres8')}}" class="btn btn-sm animated-button victoria-two">8TH SEM</a></div>
+                </form>
+    </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+        </div>
+    <script src="{{ url_for('static',filename='styles/main.min.js') }}"></script>
+</body>
+</html>
